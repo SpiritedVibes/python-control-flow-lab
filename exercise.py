@@ -37,15 +37,22 @@ print_greeting()
 # - Ensure to provide feedback for non-alphabetical or invalid entries.
 
 def check_letter():
-   
-    letter = input("Enter a letter (a-z or A-Z): ").strip().lower()
-   
-    if letter in 'aeiou':
-        print(f"The letter {letter} is a vowel.")
-    else:
-        print(f"The letter {letter} is a consonant.")
+    
+    letter = input("Enter a letter (a-z or A-Z): ").strip()
 
-# Call the function
+    if len(letter) == 1 and letter.isalpha():
+        
+        lower_letter = letter.lower()
+        
+        
+        if lower_letter in 'aeiou':
+            print(f"The letter {letter} is a vowel.")
+        else:
+            print(f"The letter {letter} is a consonant.")
+    else:
+        
+        print("Invalid input. Please enter a single alphabetical character.")
+
 check_letter()
 
 # Exercise 2: Old enough to vote?
@@ -77,7 +84,6 @@ def check_voting_eligibility():
         else:
             print("You are not old enough to vote.")
 
-# Call the function
 check_voting_eligibility()
 
 # Exercise 3: Calculate Dog Years
@@ -109,7 +115,6 @@ def calculate_dog_years():
         dog_years = (2 * 10) + ((age - 2) * 7)
         print(f"The dog's age in dog years is {dog_years:.2f}.")
 
-# Call the function
 calculate_dog_years()
 
 # Exercise 4: Weather Advice
@@ -132,7 +137,7 @@ def weather_advice():
     cold = input("Is it cold? (yes/no): ").strip().lower()
     raining = input("Is it raining? (yes/no): ").strip().lower()
     
-    # Determine and provide clothing advice
+
     if cold == "yes" and raining == "yes":
         print("Wear a waterproof coat.")
     elif cold == "yes" and raining == "no":
@@ -144,7 +149,6 @@ def weather_advice():
     else:
         print("Invalid input. Please answer 'yes' or 'no'.")
 
-# Call the function
 weather_advice()
 
 # Exercise 5: What's the Season?
@@ -203,6 +207,54 @@ def determine_season():
     
     print(f"{month} {day} is in {season}.")
 
-# Call the function
 determine_season()
+
+# Exercise 7: Number Guessing Game
+#
+# Write a Python function named `guess_number` that allows a user to guess a predetermined number within a range.
+#
+# Requirements:
+# - Set a fixed number as the target for guessing (e.g., 42).
+# - Prompt the user to guess a number within a range (e.g., 1 to 100).
+# - Allow the user to guess up to five times.
+# - After each guess, use conditional statements with AND, OR, and NOT to give the user hints like:
+#   - "Guess is too low" or "Guess is too high."
+#   - "Last chance!" when they are on their fifth guess.
+# - Print "Congratulations, you guessed correctly!" if they guess the number.
+# - Print "Sorry, you failed to guess the number in five attempts." if they do not succeed.
+#
+# Hints:
+# - Use a for loop with a range to limit guesses to five.
+# - Use logical AND, OR, and NOT to check conditions and provide appropriate feedback.
+
+def guess_number():
+    def guess_number():
+    target = 42 # indentation is weird
+    attempts = 5 
+
+    print("Guess the number between 1 and 100!")
+    for attempt in range(1, attempts + 1): 
+        try:
+            guess = int(input(f"Attempt {attempt}: Enter your guess: "))
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+            continue
+
+        if guess < 1 or guess > 100:
+            print("Please guess a number within the range of 1 to 100.")
+            continue
+
+        if guess == target:
+            print("Congratulations, you guessed correctly!")
+            break
+        elif guess < target:
+            print("Your guess is too low.")
+        else:
+            print("Your guess is too high.")
+        
+        if attempt == attempts:
+            print("Last chance!") if attempt == attempts - 1 else None
+            print("Sorry, you failed to guess the number in five attempts.")
+
+guess_number()
 
